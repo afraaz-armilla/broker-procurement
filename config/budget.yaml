@@ -1,0 +1,31 @@
+# Monthly credit caps and the degradation ladder (see docs/runbook.md §11).
+# Cycle dates differ per provider (Apollo resets on the 8th, Hunter on the 22nd, at
+# time of writing) — the ledger tracks spend against each provider's own reported
+# cycle, not the calendar month; these caps are the ceiling within that cycle.
+
+apollo_lead_credit:
+  monthly_cap: 175
+  warn_at_pct: 70
+  degrade_at_pct: 85
+  hard_stop_at_pct: 95
+
+hunter_search:
+  monthly_cap: 50
+  warn_at_pct: 70
+  degrade_at_pct: 85
+  hard_stop_at_pct: 95
+
+zerobounce_verification:
+  monthly_cap: 100
+  warn_at_pct: 70
+  degrade_at_pct: 85
+  hard_stop_at_pct: 95
+
+# Abstract is the verification fallback (only called when ZeroBounce returns
+# "unknown") — the source doc didn't pin a number for its free tier, so this cap
+# is a conservative placeholder; adjust once Phil's Abstract account confirms it.
+abstract_verification:
+  monthly_cap: 100
+  warn_at_pct: 70
+  degrade_at_pct: 85
+  hard_stop_at_pct: 95

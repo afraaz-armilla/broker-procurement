@@ -1,0 +1,42 @@
+name: Assemble
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: bpb-global
+  cancel-in-progress: false
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e .
+      - name: Authenticate to Google Cloud (Workload Identity Federation)
+        if: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER != '' }}
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
+      - name: Assemble — promote reserves, gates, draft, post to Slack
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          APOLLO_API_KEY: ${{ secrets.APOLLO_API_KEY }}
+          HUNTER_API_KEY: ${{ secrets.HUNTER_API_KEY }}
+          ZEROBOUNCE_API_KEY: ${{ secrets.ZEROBOUNCE_API_KEY }}
+          ABSTRACT_API_KEY: ${{ secrets.ABSTRACT_API_KEY }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          GOOGLE_SHEETS_SPREADSHEET_ID: ${{ secrets.GOOGLE_SHEETS_SPREADSHEET_ID }}
+          GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
+          GCP_SERVICE_ACCOUNT_KEY_B64: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY_B64 }}
+        run: bpb assemble

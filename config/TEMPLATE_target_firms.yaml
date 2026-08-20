@@ -1,0 +1,18 @@
+# ★ PHIL FILLS THIS IN — the "select group of brokerages" to target.
+#
+# A prospect at a firm not listed here still gets discovered (Path A can surface
+# anyone writing about AI insurance) but is flagged on_target_list=false and
+# surfaced in the run report rather than silently prospected — see
+# discovery/firm_resolver.py.
+#
+# domain is used to match Apollo/Hunter results and to resolve email patterns —
+# get it right (the firm's actual email-sending domain, which is sometimes not
+# the same as their marketing website domain).
+
+firms:
+  - name: "EXAMPLE Brokerage LLC"
+    domain: "example-brokerage.com"
+    tier: "tier_1"  # free-text, e.g. tier_1 / tier_2 — used only for your own reporting
+  # - name: "..."
+  #   domain: "..."
+  #   tier: "..."

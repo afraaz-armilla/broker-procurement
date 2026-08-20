@@ -1,0 +1,13 @@
+# Model selection per task. Both configurable independently — extraction is
+# high-volume/schema-constrained (cheaper model fits), drafting is low-volume and
+# voice-quality-sensitive (worth the better model).
+
+extraction:
+  model: claude-sonnet-5
+  effort: medium
+  max_tokens: 1500
+
+drafting:
+  model: claude-opus-5
+  effort: high
+  max_tokens: 1000

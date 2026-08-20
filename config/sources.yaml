@@ -1,0 +1,38 @@
+# Path A discovery sources. RSS feeds are the default provider (config/settings.yaml
+# path_a.search_providers) — free, no key, no quota. Add brokerage blogs/Substacks
+# here as Phil identifies them; the "domains" list is used to scope any optional
+# search-based provider (brave/anthropic_hosted) Phil later opts into.
+
+trade_press:
+  - name: "Insurance Business"
+    domain: "insurancebusinessmag.com"
+    rss: "https://www.insurancebusinessmag.com/us/rss/"
+  - name: "The Insurer"
+    domain: "theinsurer.com"
+    rss: "https://www.theinsurer.com/feed/"
+  - name: "Insurance Insider"
+    domain: "insuranceinsider.com"
+    rss: "https://www.insuranceinsider.com/rss.xml"
+  - name: "Reinsurance News"
+    domain: "reinsurancene.ws"
+    rss: "https://www.reinsurancene.ws/feed/"
+  - name: "Business Insurance"
+    domain: "businessinsurance.com"
+    rss: "https://www.businessinsurance.com/rss.xml"
+  - name: "Artemis"
+    domain: "artemis.bm"
+    rss: "https://www.artemis.bm/feed/"
+
+# ★ PHIL: add brokerage thought-leadership blogs and insurtech/AI-risk newsletters
+# and Substacks here as they're identified. Each needs at minimum a domain; add rss
+# if the source publishes a feed (most Substacks do, at "<name>.substack.com/feed").
+brokerage_blogs: []
+newsletters: []
+
+# Search terms used against whichever provider(s) are enabled, to find "AI insurance"
+# content within the above domains.
+query_terms:
+  - "AI insurance"
+  - "artificial intelligence liability insurance"
+  - "AI risk coverage"
+  - "AI E&O"

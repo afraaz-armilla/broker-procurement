@@ -1,0 +1,19 @@
+# Sanctions list sources and matcher thresholds. Screening is name-only — the floor
+# of compliance for a prospecting gate, not KYC-grade. See docs/compliance.md.
+
+sources:
+  ofac_sdn:
+    url: "https://sanctionslistservice.ofac.treas.gov/api/download/SDN.CSV"
+  ofac_consolidated:
+    url: "https://sanctionslistservice.ofac.treas.gov/api/download/CONSOLIDATED.CSV"
+  uksl:
+    # UK Sanctions List (FCDO) — NOT the retired OFSI Consolidated List.
+    url: "https://assets.publishing.service.gov.uk/media/uk-sanctions-list.xml"
+  canada_sema:
+    url: "https://www.international.gc.ca/world-monde/assets/office_docs/international_relations-relations_internationales/sanctions/sema-lmes.xml"
+  un_consolidated:
+    url: "https://scsanctions.un.org/resources/xml/en/consolidated.xml"
+
+matching:
+  potential_match_threshold: 92  # rapidfuzz token_set_ratio; below this -> clear
+  refresh_cadence_hours: 24

@@ -1,0 +1,39 @@
+# ★ PHIL FILLS THIS IN — your outreach + follow-up wording, voice, and cadence.
+# The bot personalizes around these templates; it never invents wording outside
+# the constraints below. See outreach/drafter.py.
+#
+# Placeholders available in subject_template/body_template:
+#   {{first_name}} {{firm_name}} {{hook_summary}} {{article_title}}
+#   {{publication}} {{sender_name}}
+#
+# Every approved item is HANDED TO YOU to send yourself — nothing sends
+# automatically — so write these as text you're comfortable pasting into your
+# own mail client or LinkedIn, not as an automated-campaign template (no
+# unsubscribe footer, no tracking pixel language).
+
+version: 1
+
+constraints:
+  max_words: 150
+  cta_count: 1  # exactly one call to action per message
+
+variants:
+  # Path A: broker already has a linked public signal (their own article/post).
+  path_a_warm:
+    steps:
+      - id: 1
+        subject_template: ""   # ★ PHIL: e.g. "Re: {{article_title}}"
+        body_template: ""      # ★ PHIL: reference {{hook_summary}} naturally, one clear ask
+
+  # Path B, "soft" policy: no public signal, softer/lower-key touch.
+  path_b_soft:
+    steps:
+      - id: 1
+        subject_template: ""   # ★ PHIL
+        body_template: ""      # ★ PHIL
+
+  # Path B, "hold" policy: no public signal, don't send — just surface and wait.
+  # (Which of path_b_soft / path_b_hold is active is set in TEMPLATE_policy.yaml's
+  # b_only_policy field; path_b_hold needs no wording, it's never sent.)
+  path_b_hold:
+    send: false

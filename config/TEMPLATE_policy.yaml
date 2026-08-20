@@ -1,0 +1,33 @@
+# ★ PHIL FILLS THIS IN — the operational policy knobs the source doc left open.
+
+policy:
+  # Section 8, Q4 of the source doc: for brokers found only via Path B (no public
+  # signal), do we send a softer sequence, or just surface and hold?
+  #   soft -> uses the path_b_soft template variant
+  #   hold -> uses path_b_hold (never sent; held for a future Path A signal)
+  b_only_policy: hold  # ★ PHIL: "soft" or "hold"
+
+  # Slack user IDs (not @handles — the "U0XXXXXXX" form) allowed to approve/reject
+  # from the digest. Find these via Slack's "Copy member ID" on a user's profile.
+  approver_slack_user_ids: []  # ★ PHIL: e.g. ["U012ABCDEF"]
+
+  # Slack channel ID (the "C0XXXXXXX" form, not the #channel-name) the approval
+  # queue posts to. Find it via "Copy channel ID" in the channel's details.
+  slack_channel_id: ""  # ★ PHIL: e.g. "C012ABCDEF"
+
+  # After an approval, require a second 📤 reaction confirming Phil actually sent
+  # it before the reserve-staleness clock and funnel metrics treat it as sent.
+  # Recommended true for month one to measure approval->send conversion.
+  require_send_confirmation: true
+
+  approval_ttl_hours: 168       # 7 days — unresolved queue items expire
+  send_confirm_ttl_days: 14     # approved-but-unconfirmed items surface for release
+
+  # Verification-gate behavior for domains where every address appears "valid"
+  # (catch-all) — false means such prospects are held (needs_manual) rather than
+  # risking a send to an unverifiable guess.
+  allow_catch_all_emails: false
+
+  # How many inferred email-pattern candidates get verified per prospect before
+  # giving up (each attempt costs a verification credit).
+  max_pattern_guesses: 1

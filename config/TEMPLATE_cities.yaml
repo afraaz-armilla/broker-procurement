@@ -1,0 +1,12 @@
+# ★ PHIL FILLS THIS IN — the doc named SF, LA, NY, Chicago and asked for two more.
+#
+# Values should match how Apollo expects person_locations (city, state/region,
+# country), e.g. "San Francisco, California, US".
+
+cities:
+  - "San Francisco, California, US"
+  - "Los Angeles, California, US"
+  - "New York, New York, US"
+  - "Chicago, Illinois, US"
+  # - "..."   # ★ 5th city
+  # - "..."   # ★ 6th city

@@ -1,0 +1,13 @@
+# Non-secret runtime knobs.
+
+path_a:
+  # Default is free RSS feed monitoring. Add "brave" and/or "anthropic_hosted" to
+  # broaden coverage at a small ($ per query) cost — see docs/cost-model.md.
+  # Providers run in the order listed; results are merged and deduped.
+  search_providers: ["rss"]
+  min_relevance: 0.6       # below this, a signal is stored but not promoted to a prospect
+  min_article_chars: 600   # below this (after extraction), treat as snippet_only, not dropped
+
+roles:
+  max_active_per_firm: 3
+  stale_after_days: 45     # an active, unanswered contact becomes eligible for reserve promotion

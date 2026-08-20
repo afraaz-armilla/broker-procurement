@@ -1,0 +1,34 @@
+# Title/line-of-business patterns used by selection/role_priority.py to band prospects.
+# Matching is case-insensitive substring/keyword matching over the prospect's title.
+# Band 1 (public voice) is assigned automatically whenever a prospect has a linked
+# Path A signal — it does not depend on title at all, so it isn't listed here.
+
+decision_maker_seniority:
+  - "head of"
+  - "practice leader"
+  - "evp"
+  - "svp"
+  - "managing director"
+  - "chief"
+  - "president"
+  - "partner"
+
+line_of_business_keywords:
+  - "e&o"
+  - "errors and omissions"
+  - "professional liability"
+  - "cyber"
+  - "tech"
+  - "technology"
+  - "management liability"
+  - "d&o"
+  - "ai"
+  - "artificial intelligence"
+
+producer_titles:
+  - "producer"
+  - "broker"
+  - "account executive"
+  - "vice president"
+  - "account manager"
+  - "client advisor"
